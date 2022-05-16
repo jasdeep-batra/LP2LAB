@@ -1,0 +1,73 @@
+public class Area {
+    public Double val1 {get;set;}
+    public Double val2 {get;set;}
+    public Double result {get;set;}
+    public String func {get;set;}
+    
+    public void areaof (){
+        
+        
+        if( func == 'cir')
+        {
+            result=3.14*val1*val1;
+        }
+        
+        else if(func == 'rec')
+        {
+            result = val1*val2;
+        }
+        
+        else
+        {
+            result = .5*val1*val2;
+        }
+        
+    }
+
+
+
+}
+
+
+
+<apex:page controller="Area">
+
+<apex:form >
+   
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Value 1(for area of circle enter only value 1)"/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:inputText value="{!val1}"/>
+            </apex:pageBlockSectionItem>                          
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Value 2"/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:inputText value="{!val2}"/>
+            </apex:pageBlockSectionItem>                         
+            <apex:pageBlockSectionItem >
+                <apex:selectRadio value="{!func}" layout="pageDirection">
+                    <apex:selectOption itemValue="cir" itemLabel="Area Of Circle"/>
+                    <apex:selectOption itemValue="rec" itemLabel="Area Of Rectangle"/>
+                    <apex:selectOption itemValue="tri" itemLabel="Area Of Triangle"/>
+                </apex:selectRadio>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >               
+            </apex:pageBlockSectionItem>       
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Result"/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:inputText value="{!result}" id="res"/><apex:actionStatus id="sts" startText="Finding..."/>
+            </apex:pageBlockSectionItem>                                      
+        </apex:pageBlockSection>   
+        <apex:pageBlockButtons >
+            <apex:commandButton value="Find" action="{!areaof}" reRender="res"  status="sts"/>
+        </apex:pageBlockButtons>
+    </apex:pageBlock>
+    </apex:form>
+
+</apex:page>
